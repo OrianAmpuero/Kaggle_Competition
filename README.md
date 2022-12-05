@@ -7,9 +7,9 @@
 
 
 ## 📚RECURSOS
-Salaries_data.csv (Datos para trabajar)
-Testeo.csv (Datos para predecir)
-Muestra.csv (Ejemplo de resultados que deben subir a Kaggle)
++ Salaries_data.csv (Datos para trabajar)
++ Testeo.csv (Datos para predecir)
++ Muestra.csv (Ejemplo de resultados que deben subir a Kaggle)
 ## 🔍INFO DE COLUMNAS
 + work_year: The year the salary was paid.
 + experience_level: The experience level in the job during the year
