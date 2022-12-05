@@ -31,7 +31,7 @@
 
 ## PROCESO
 + Creamos una funcion que automatiza los entrenamientos de cada modelo y el ajuste de sus hyperparametros.
-+ La conbinamos con el gridsearch
++ La combinamos con el gridsearch
 + resumimos la columna de titulos de trabajo
 + Transformamos los datos de varias maneras, la transformacion de mayor exito es transformando las columnas: employee_residence, company_location, job_title, adjudicandoles a cada una un valor equivalente a los valores salariales del internet.
 + normalizamos las columnas numericas
