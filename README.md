@@ -1,55 +1,50 @@
-##      >>Competición de Kaggle para Bootcamp de Data OCT'22:snake: semana 7 en [Ironhack](https://www.ironhack.com/)<<
+# Project Kaggle Competition - SALARY PREDICTION
 
-<p align="center"> <img src="https://github.com/OrianAmpuero/Kaggle_Competition/blob/main/img/predict.jpg" width="700" height="350">  </p>
+<img src="https://github.com/AnaChaparro/Kaggle_Competition/blob/main/img/bank-number-usa-bills-dollar.jpg?raw=true"> 
 
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;  [¡¡¡QUE EMPIECE EL JUEGO!!!](https://www.kaggle.com/competitions/predecir-salario-data)  
-
-## 📁ESTRUCTURA
-
--  DATA/     &emsp;&emsp;                    # contiene los csv  
-
--  IMG/     &emsp;&emsp;                     # contiene imagénes referentes al proyecto 
- 
--  PPTS/      &emsp;&emsp;                   # para cargar las presentaciones
-
--  .gitignore    &emsp;&emsp;                # archivo para ignorar documentos    
-
--  README.md  
+## Tabla de contenido:
+1. [Introducción](#introducción)
+2. [Exploración de los datos](#exploración-de-los-datos)
+3. [Limpieza y transformación](#limpieza-y-transformación)
+4. [Machine Learning](#machine-learning)
+5. [Resultados](#resultados)
 
 
+### 1. Introducción
 
-## 📚RECURSOS
+Se ha realizado el siguiente proyecto que trata de una competición de Kaggle en la que mediante modelos de Machine Learning y una base de datos basada en salarios de diferentes empresas y puestos de trabajo, hay que determinar que modelo puede predecir de la mejor manera el salario en USD que depende de determinadas variables.
 
-- Salaries_data.csv (Datos para trabajar)
-- Testeo.csv (Datos para predecir)
-- Muestra.csv (Ejemplo de resultados que deben subir a Kaggle)
+Los datos iniciales se tratan de la tabla de salaries, testeo y muestra. Con la tabal de salaries de hará la predición para constrastarse con la de testeo. La de muestra simplemente indica el formato en el que los datos han de subirse a Kaggle.
 
+### 2. Exploración de los datos
 
-## 🔍INFO DE COLUMNAS 
-- *work_year:* The year the salary was paid.
-- *experience_level:* The experience level in the job during the year
-- *employment_type:* The type of employment for the role
-- *job_title:* The role worked in during the year.
-- *salary:* The total gross salary amount paid.
-- *salary_currency:* The currency of the salary paid as an ISO 4217 currency code.
-- *salaryinusd:* The salary in USD
-- *employee_residence:* Employee's primary country of residence in during the work year as an ISO 3166 country code.
-- *remote_ratio:* The overall amount of work done remotely
-- *company_location:* The country of the employer's main office or contracting branch
-- *company_size:* The median number of people that worked for the company during the year
+En este apartado se hace un balance de la consistencia de los datos, se estudia cual es la variable a predecir y se hace un estudio del resto de variables que aparecen en las columanas, tomándose la decisión de eliminar salary y salary_currency, ya que la variable a precedir es salary_in_usd. En el README únicamente se va a tener en cuenta el modelo que ha ofrecido mejor puntuación en la web de Kaggle, por lo que únicamente nos referenciaremos a este.
 
+### 3. Limpieza y transformación
 
-## 📈OBJECTIVO
+Los datos vienen dados de manera bastante consistente y limpia, por lo que únicamente se ha decidido realizar algunas tranformaciones. Cabe decir que todos las tranformaciones realizadas al csv de salaries, se han aplicado también al testeo, concatenando inicialmente ambos dataframes, y separándolos para realizar la comprobación de los modelos.
 
-- Preparar los datos para los diversos modelos (proceso empírico) 
-- Entrenar y Testear modelos de Machine Learning
-- Subir los resultados con el mejor modelo entrenado de Machine Learning
-- Hacer pull request con la presentación en la carpeta de 'PPTS' 
-- Crear repo propio del proyecto (issue)
+Tras eliminar las columnas indicadas en el apartado anterior, se ha realizado la locaización de outliers, y eliminado las filas que los contenían, y se ha eliminado la columna de employee_residence. Posteriormente se ha realizado el get dummies de las columnas categóricas ('experience_level','employment_type', 'job_title','company_location','company_size') y se han normalizado las columas de work_year y remote_ratio.
+Toda vez realizados estos cambios, se han separado los DF de salaries y testeo y se ha realizado el train test split en partiendo el DF de salaries en 80 y 20%.
 
-<br />
+### 4. Machine Learning
 
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <bn > 💁🏻‍♀️💁🏻  ORI Y ADRI LES DESEAMOS HAPPY MACHINE LEARNING WEEK  <bn />
+Una vez se tienen los datos limpios y transformados se entrenan y se predice con los siguientes modelos:
 
-<p align="center"> <img src="https://github.com/OrianAmpuero/Kaggle_Competition/blob/main/img/jijiji.gif" width="500" height="250">   </p>
+- LinearRegression
+- Lasso       
+- Ridge        
+- ElasticNet
+- Support Vector Regressor (SVR)
+- Random Forest Regressor(RFR)
+- Extra Tree Regressor (ETR)
+- Gradient Boosting Regressor (GBR)
+- XGB Regressor (XGBR)
+- Cat Boost Regressor (CTR)
+- LGBM Regressor (LGBMR)
+
+### 5. Resultados
+
+Una vez se ha realizado la predicción con todos los modelos indicados, se calcula el RMSE y el R2 de cada modelo para ver cual predicón se ajusta más.
+En este caso el modelo que ofrece un menor error, en principio, ya que no disponemos de todos los datos para realizar la comprobación, sería el modelo Ridge habiendo sido entrenado con el 100% de los datos de salaries.
 
