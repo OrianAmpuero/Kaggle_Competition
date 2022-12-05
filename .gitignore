@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+# no subir
+/catboost_info
+.catboost_info
+catboost_info
