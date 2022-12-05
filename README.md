@@ -1,55 +1,25 @@
-##      >>Competición de Kaggle para Bootcamp de Data OCT'22:snake: semana 7 en [Ironhack](https://www.ironhack.com/)<<
+# Competicion-Kaggle
 
-<p align="center"> <img src="https://github.com/OrianAmpuero/Kaggle_Competition/blob/main/img/predict.jpg" width="700" height="350">  </p>
-
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;  [¡¡¡QUE EMPIECE EL JUEGO!!!](https://www.kaggle.com/competitions/predecir-salario-data)  
-
-## 📁ESTRUCTURA
-
--  DATA/     &emsp;&emsp;                    # contiene los csv  
-
--  IMG/     &emsp;&emsp;                     # contiene imagénes referentes al proyecto 
+- OBJETIVO:
+ Predecir con el menor error posible los salarios para trabajos relacionados con data en dólares.
  
--  PPTS/      &emsp;&emsp;                   # para cargar las presentaciones
+- PASOS A SEGUIR: 
+1) Exploración de los datos.
+2) Limpieza.
+3) Prueba de modelos.
+4) Calculo del error.
+5) Entrenamiento y predicción.
+6) Subida a Kaggle
 
--  .gitignore    &emsp;&emsp;                # archivo para ignorar documentos    
+- PROCESO DE LIMPIEZA Y EXPLORACIÓN:
+Se exploran los datos, mirando la colinealidad, si existen nulos y viendo cuales son las columnas que no aportan información relevante.
+Se eliminan los outliers.
+Se unen los dataframes de salarios y testeo para que el proceso de limpieza sea mas rápido.
+Se eliminan las columnas de salary, employee_residence y salary_currency.
+Se normalizan las columnas year y remote_ratio. Para el resto de columnas, las cuales son categóricas, se utiliza get dummies.
 
--  README.md  
-
-
-
-## 📚RECURSOS
-
-- Salaries_data.csv (Datos para trabajar)
-- Testeo.csv (Datos para predecir)
-- Muestra.csv (Ejemplo de resultados que deben subir a Kaggle)
-
-
-## 🔍INFO DE COLUMNAS 
-- *work_year:* The year the salary was paid.
-- *experience_level:* The experience level in the job during the year
-- *employment_type:* The type of employment for the role
-- *job_title:* The role worked in during the year.
-- *salary:* The total gross salary amount paid.
-- *salary_currency:* The currency of the salary paid as an ISO 4217 currency code.
-- *salaryinusd:* The salary in USD
-- *employee_residence:* Employee's primary country of residence in during the work year as an ISO 3166 country code.
-- *remote_ratio:* The overall amount of work done remotely
-- *company_location:* The country of the employer's main office or contracting branch
-- *company_size:* The median number of people that worked for the company during the year
-
-
-## 📈OBJECTIVO
-
-- Preparar los datos para los diversos modelos (proceso empírico) 
-- Entrenar y Testear modelos de Machine Learning
-- Subir los resultados con el mejor modelo entrenado de Machine Learning
-- Hacer pull request con la presentación en la carpeta de 'PPTS' 
-- Crear repo propio del proyecto (issue)
-
-<br />
-
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <bn > 💁🏻‍♀️💁🏻  ORI Y ADRI LES DESEAMOS HAPPY MACHINE LEARNING WEEK  <bn />
-
-<p align="center"> <img src="https://github.com/OrianAmpuero/Kaggle_Competition/blob/main/img/jijiji.gif" width="500" height="250">   </p>
+- APLICACION DE MACHINE LEARNING:
+Una vez que los datos estan en el formato escogido, se testean en una función para poder conocer cual es el modelo que mejor funciona para los datos.
+El modelo que menor error obtenia fue RIDGE, el cual se volvio a entrenar y con el cual se realizo la predicción del testeo.
+Para finalizar se subio el archivo a Kaggle para comprobar el error que se obtiene con los datos reales.
 
