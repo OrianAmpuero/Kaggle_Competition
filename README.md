@@ -1,12 +1,8 @@
 ## 📁ESTRUCTURA
 + DATA/    # contiene los csv
-
 + IMG/    # contiene imagénes referentes al proyecto
-
 + PPTS/    # para cargar las presentaciones
-
 + .gitignore    # archivo para ignorar documentos
-
 + README.md
 
 
