@@ -1,42 +1,4 @@
-##      >>Competición de Kaggle para Bootcamp de Data OCT'22:snake: semana 7 en [Ironhack](https://www.ironhack.com/)<<
-
-<p align="center"> <img src="https://github.com/OrianAmpuero/Kaggle_Competition/blob/main/img/predict.jpg" width="700" height="350">  </p>
-
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;  [¡¡¡QUE EMPIECE EL JUEGO!!!](https://www.kaggle.com/competitions/predecir-salario-data)  
-
-## 📁ESTRUCTURA
-
--  DATA/     &emsp;&emsp;                    # contiene los csv  
-
--  IMG/     &emsp;&emsp;                     # contiene imagénes referentes al proyecto 
- 
--  PPTS/      &emsp;&emsp;                   # para cargar las presentaciones
-
--  .gitignore    &emsp;&emsp;                # archivo para ignorar documentos    
-
--  README.md  
-
-
-
-## 📚RECURSOS
-
-- Salaries_data.csv (Datos para trabajar)
-- Testeo.csv (Datos para predecir)
-- Muestra.csv (Ejemplo de resultados que deben subir a Kaggle)
-
-
-## 🔍INFO DE COLUMNAS 
-- *work_year:* The year the salary was paid.
-- *experience_level:* The experience level in the job during the year
-- *employment_type:* The type of employment for the role
-- *job_title:* The role worked in during the year.
-- *salary:* The total gross salary amount paid.
-- *salary_currency:* The currency of the salary paid as an ISO 4217 currency code.
-- *salaryinusd:* The salary in USD
-- *employee_residence:* Employee's primary country of residence in during the work year as an ISO 3166 country code.
-- *remote_ratio:* The overall amount of work done remotely
-- *company_location:* The country of the employer's main office or contracting branch
-- *company_size:* The median number of people that worked for the company during the year
+# Competición de Kaggle para Bootcamp de Data OCT'22:
 
 
 ## 📈OBJECTIVO
@@ -47,9 +9,59 @@
 - Hacer pull request con la presentación en la carpeta de 'PPTS' 
 - Crear repo propio del proyecto (issue)
 
-<br />
 
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <bn > 💁🏻‍♀️💁🏻  ORI Y ADRI LES DESEAMOS HAPPY MACHINE LEARNING WEEK  <bn />
+## 🧠 CARGA Y ANALISIS DE DATOS
 
-<p align="center"> <img src="https://github.com/OrianAmpuero/Kaggle_Competition/blob/main/img/jijiji.gif" width="500" height="250">   </p>
+1º Importación de datos a partir de los archivos Salaries_data.csv y Testeo.csv
+
+2º Exploracion, limpieza y transformación:
+      df.type() > Observamos columnas de tipo categorico: 'experience_level','employment_type','job_title','employee_residence','company_location, 'company_size'. 
+      
+3º Con el fin de nuestro modelo predictivo funcione, debemos convertir todos los datos en categoricos en numericos:
+    Utilización de 2 metodos:
+    - LabelEncoder(), Transforma cada uno de los datos categoricos en etiquetas numericas asociados a su peso dentro del df.
+    - pd.get_dummies(), Transforma cada uno de los datos en etiquetas numericas binarias, entre 0 y 1.
+    
+* IMPORTANTE. Concatenar en un solo df, los dos dataframe que tenemos, para que el proceso de transformación a tipo numerico sea homogeneo
+
+## 👉 DETERMINAMOS X y Y
+
+1º Una vez todos los datos de nuestro dataframe son numericos, determinamos la X y la y, con el fin de hacer una predición sobre y.
+2º Spliteamos x e y, para obtener un porcentaje de entreno y otro de test. 
+    'X_train, X_test, y_train, y_test = tts(X, y, train_size=0.8, test_size=0.2, random_state=22)'
+    
+## 🤖 ELEGIMOS EL MODELO DE MACHINE LEARNING.
+
+1º Utilizamos lazyregressor para tener una aproximacion de los modelos más optimos para nuestro caso.
+    'reg = LazyRegressor(verbose=0, ignore_warnings=False, custom_metric=None)' 
+
+2º GradientBoostingRegressor                                   
+   RandomForestRegressor                                           
+   BaggingRegressor
+   
+   Estos 3 modelos son los que previsiblemente nos arrojan un error más bajo, en pasos posteriores comprobaremos empiricamente
+   cierto
+   
+## 🌲 RAMDOM FOREST REGRESSOR.
+from sklearn.ensemble import RandomForestRegressor as Rfr
+
+1º Iniciamos modelo; rfr = Rfr()   
+2º Entrenamos modelo; rfr.fit(X_train, y_train)
+3º Predecimos modelo; y_pred_train=rfr.predict(X_testeo) +++++ UTILIZAMOS LA MUESTRA DE TESTEO KAGGLE+++++++ len=107
+4º Calculamos RMSE y RSE.
+   'MSE = mean_squared_error(y_train, y_pred_train)'
+   'RMSE = math.sqrt(MSE)'
+
+
+## 🌪 GBR.
+from sklearn.ensemble import GradientBoostingRegressor 
+
+1º Iniciamos modelo; boo = GradientBoostingRegressor()   
+2º Entrenamos modelo; boo.fit(X_train, y_train)
+3º Predecimos modelo; y_pred_train=boo.predict(X_testeo) +++++ UTILIZAMOS LA MUESTRA DE TESTEO KAGGLE+++++++ len=107
+4º Calculamos RMSE y RSE.
+   'MSE = mean_squared_error(y_train, y_pred_train)'
+   'RMSE = math.sqrt(MSE)'
+
+## 🥇 ELEGIMOS LA MUESTRA MAS FAVORABLE Y LA CARGAMOS EN KAGGLE.
 
